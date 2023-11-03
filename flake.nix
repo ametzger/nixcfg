@@ -27,7 +27,7 @@
 
       modules = [
         ./modules/nix-core.nix
-        ./modules/nix-darwin.nix
+        ./modules/darwin.nix
 
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
