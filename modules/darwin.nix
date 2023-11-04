@@ -1,8 +1,8 @@
 { pkgs, lib, inputs, ... }: {
-  environment.systemPackages =
-    [
-      pkgs.vim
-    ];
+  # environment.systemPackages =
+  #   [
+  #     pkgs.vim
+  #   ];
 
   # this sets up /etc/zshrc with nix loaded
   programs.zsh.enable = true;

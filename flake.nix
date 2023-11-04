@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -28,6 +28,8 @@
       modules = [
         ./modules/nix-core.nix
         ./modules/darwin.nix
+        ./modules/system.nix
+        # ./modules/homebrew.nix # wip - currently kills non-managed brew packages, so not using for now
 
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
@@ -35,9 +37,8 @@
 
           home-manager.extraSpecialArgs = inputs;
 
-          # home-manager.users.asm = import ./home;
+          home-manager.users.asm = import ./home;
         }
-
       ];
     };
   };

@@ -9,5 +9,8 @@
     automatic = lib.mkDefault true;
     options = lib.mkDefault "--delete-older-than 1w";
   };
-  nix.settings.auto-optimise-store = true;
+
+  # TODO(asm,2023-11-03): this seems to be causing issues like `error: cannot link
+  # '/nix/store/.tmp-link' to '/nix/store/.links/...': File exists`
+  # nix.settings.auto-optimise-store = true;
 }
