@@ -1,0 +1,3 @@
+* nixcfg
+
+nix configuration, mostly =nix-darwin= and accoutrement.
