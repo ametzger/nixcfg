@@ -2,7 +2,7 @@
   description = "asm nix configuration";
 
   nixConfig = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   inputs = {
@@ -28,90 +28,92 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    flake-utils,
-    nix-darwin,
-    home-manager,
-    rtx-flake,
-    devenv,
-    nur,
-    ...
-  }: let
-    supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+  outputs =
+    inputs @ { self
+    , nixpkgs
+    , flake-utils
+    , nix-darwin
+    , home-manager
+    , rtx-flake
+    , devenv
+    , nur
+    , ...
+    }:
+    let
+      supportedSystems = [ "x86_64-darwin" "aarch64-darwin" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
-    # inherit (nixpkgs.lib) optionalAttrs singleton;
+      # inherit (nixpkgs.lib) optionalAttrs singleton;
 
-    # overlays =
-    #   singleton
-    #       (
-    #         # Sub in x86 version of packages that don't build on Apple Silicon yet
-    #         final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-    #           inherit (final.pkgs-x86);
-    #         })
-    #       )
-    #     ++ [ rtx-flake.overlay ];
+      # overlays =
+      #   singleton
+      #       (
+      #         # Sub in x86 version of packages that don't build on Apple Silicon yet
+      #         final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+      #           inherit (final.pkgs-x86);
+      #         })
+      #       )
+      #     ++ [ rtx-flake.overlay ];
 
-    legacyPackages = forAllSystems (
-      system:
+      legacyPackages = forAllSystems (
+        system:
         import nixpkgs {
           inherit system;
-          overlays = [rtx-flake.overlay];
+          overlays = [ rtx-flake.overlay ];
           config = {
             allowUnfree = true;
           };
         }
-    );
+      );
 
-    # nurModules = forAllSystems (
-    #   system:
-    #   import nur {
-    #     nurpkgs = legacyPackages."${system}";
-    #     pkgs = legacyPackages."${system}";
-    #   }
-    # );
+      # nurModules = forAllSystems (
+      #   system:
+      #   import nur {
+      #     nurpkgs = legacyPackages."${system}";
+      #     pkgs = legacyPackages."${system}";
+      #   }
+      # );
 
-    homeManagerConfigs = forAllSystems (
-      system: {
-        pkgs = legacyPackages."${system}";
-        modules = [
-          {
-            home.packages = [devenv.packages."${system}".devenv];
-          }
-          ./home
-        ];
-      }
-    );
-  in {
-    formatter.aarch64-darwin = nixpkgs.legacyPackages."aarch64-darwin".alejandra;
-    formatter.x86_64-darwin = nixpkgs.legacyPackages."x86_64-darwin".alejandra;
-
-    darwinConfigurations."asm-mbp-16" = nix-darwin.lib.darwinSystem {
-      system = "x86_64-darwin";
-
-      # expose flake's inputs as param
-      specialArgs = {inherit inputs;};
-
-      modules = [
-        ./modules/nix-core.nix
-        ./modules/darwin.nix
-        ./modules/system.nix
-        # ./modules/homebrew.nix # wip - currently kills non-managed brew packages, so not using for now
-
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.extraSpecialArgs = inputs;
-
-          home-manager.users.asm = import ./home;
+      homeManagerConfigs = forAllSystems (
+        system: {
+          pkgs = legacyPackages."${system}";
+          modules = [
+            {
+              home.packages = [ devenv.packages."${system}".devenv ];
+            }
+            ./home
+          ];
         }
-      ];
-    };
+      );
+    in
+    {
+      formatter.aarch64-darwin = nixpkgs.legacyPackages."aarch64-darwin".nixpkgs-fmt;
+      formatter.x86_64-darwin = nixpkgs.legacyPackages."x86_64-darwin".nixpkgs-fmt;
 
-    homeConfigurations."asm-mbp-14" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
-  };
+      darwinConfigurations."asm-mbp-16" = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+
+        # expose flake's inputs as param
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          ./modules/nix-core.nix
+          ./modules/darwin.nix
+          ./modules/system.nix
+          # ./modules/homebrew.nix # wip - currently kills non-managed brew packages, so not using for now
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = inputs;
+
+            home-manager.users.asm = import ./home;
+          }
+        ];
+      };
+
+      homeConfigurations."asm-mbp-14" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
+    };
 }

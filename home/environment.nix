@@ -1,11 +1,12 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   concatSessionList = builtins.concatStringsSep ":";
-in {
+in
+{
   home.sessionPath =
     [
       "${config.home.homeDirectory}/.pyenv/bin"

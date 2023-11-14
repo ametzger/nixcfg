@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   programs.git = {
     enable = true;
@@ -10,7 +9,7 @@
 
     userName = "Alex Metzger";
     userEmail = "asm@asm.io";
-    signing = {key = "974B7213E1816927";};
+    signing = { key = "974B7213E1816927"; };
 
     aliases = {
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
@@ -29,9 +28,9 @@
     };
 
     extraConfig = {
-      github = {user = "ametzger";};
-      gitlab = {user = "ametzger";};
-      credential = {helper = "osxkeychain";};
+      github = { user = "ametzger"; };
+      gitlab = { user = "ametzger"; };
+      credential = { helper = "osxkeychain"; };
       core = {
         editor = "emacsclient -t -a=\\\"\\\"";
         whitespace = "trailing-space,space-before-tab,-indent-with-non-tab";
@@ -39,15 +38,15 @@
         excludesfile = "~/.gitignore_global";
         attributesfile = "~/.gitattributes";
       };
-      push = {default = "simple";};
-      color = {ui = "auto";};
-      log = {decorate = "true";};
-      pull = {ff = "only";};
-      branch = {autoSetupMerge = "always";};
-      diff = {algorithm = "patience";};
-      rebase = {autoStash = "true";};
-      init = {defaultBranch = "main";};
-      advice = {detachedHead = "false";};
+      push = { default = "simple"; };
+      color = { ui = "auto"; };
+      log = { decorate = "true"; };
+      pull = { ff = "only"; };
+      branch = { autoSetupMerge = "always"; };
+      diff = { algorithm = "patience"; };
+      rebase = { autoStash = "true"; };
+      init = { defaultBranch = "main"; };
+      advice = { detachedHead = "false"; };
       mergetool = {
         keepBackup = "false";
         keepTemporaries = "false";

@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   username = "asm";
-in {
+in
+{
   home = {
     username = "${username}";
     homeDirectory = lib.mkForce "/Users/${username}";
