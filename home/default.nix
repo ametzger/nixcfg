@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{lib, ...}: let
   username = "asm";
 in {
   home = {

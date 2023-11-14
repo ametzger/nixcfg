@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     # ./emacs # wip
     ./fish.nix
@@ -9,72 +9,71 @@
     ./zsh.nix
   ];
 
-  home.packages = with pkgs;
-    [
-      awscli
-      black
-      cascadia-code
-      colima
-      coreutils
-      curl
-      dogdns
-      detect-secrets
-      elixir
-      elixir-ls
-      eza
-      fd
-      figlet
-      fantasque-sans-mono
-      gnupg
-      gnused
-      httpie
-      hyperfine
-      ibm-plex
-      infracost
-      iterm2
-      # NOTE(asm,2023-10-05): this requires some extra license/nonfree weirdness
-      # input-fonts
-      jetbrains-mono
-      jq
-      just
-      # magic-wormhole
-      mtr
-      nil
-      nixpkgs-fmt
-      nmap
-      nodejs
-      nodePackages.pyright
-      openblas
-      openssl
-      pgbouncer
-      postgresql
-      python310Full
-      # python310Packages.ruff-lsp
-      python310Packages.mypy
-      python310Packages.pipx
-      rabbitmq-server
-      reattach-to-user-namespace
-      rectangle
-      redis
-      ripgrep
-      rtx
-      ruby
-      # ruff
-      shellcheck
-      socat
-      sops
-      tflint
-      terraform-ls
-      terraform-lsp
-      tokei
-      tree
-      trufflehog
-      wget
-      wrk
-      xmlsec
-      zlib
-      zsh
-    ];
+  home.packages = with pkgs; [
+    awscli
+    black
+    cascadia-code
+    colima
+    coreutils
+    curl
+    dogdns
+    detect-secrets
+    elixir
+    elixir-ls
+    eza
+    fd
+    figlet
+    fantasque-sans-mono
+    gnupg
+    gnused
+    httpie
+    hyperfine
+    ibm-plex
+    infracost
+    iterm2
+    # NOTE(asm,2023-10-05): this requires some extra license/nonfree weirdness
+    # input-fonts
+    jetbrains-mono
+    jq
+    just
+    # magic-wormhole
+    mtr
+    nil
+    nixpkgs-fmt
+    nmap
+    nodejs
+    nodePackages.pyright
+    openblas
+    openssl
+    pgbouncer
+    postgresql
+    python310Full
+    # python310Packages.ruff-lsp
+    python310Packages.mypy
+    python310Packages.pipx
+    rabbitmq-server
+    reattach-to-user-namespace
+    rectangle
+    redis
+    ripgrep
+    rtx
+    ruby
+    # ruff
+    shellcheck
+    socat
+    sops
+    tflint
+    terraform-ls
+    terraform-lsp
+    tokei
+    tree
+    trufflehog
+    wget
+    wrk
+    xmlsec
+    zlib
+    zsh
+  ];
 
   # home-manager derived configurations
   programs.bash = {

@@ -1,12 +1,11 @@
-{ pkgs
-, lib
-, config
-, ...
-}:
-let
-  concatSessionList = builtins.concatStringsSep ":";
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  concatSessionList = builtins.concatStringsSep ":";
+in {
   home.sessionPath =
     [
       "${config.home.homeDirectory}/.pyenv/bin"
@@ -21,7 +20,8 @@ in
       "/usr/sbin"
       "/bin"
       "/sbin"
-    ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
       "/run/current-system/sw/bin"
       "/opt/local/homebrew/bin"
     ];
@@ -38,10 +38,10 @@ in
     LANG = "en_US.UTF-8";
     LESS = "-R";
     LSCOLORS = "exfxcxdxbxegedabagacad";
-    NIX_PATH = concatSessionList ([
+    NIX_PATH = concatSessionList [
       "${config.home.homeDirectory}/.nix-defexpr/channels"
       "/nix/var/nix/profiles/per-user/root/channels"
-    ]);
+    ];
     PYTHONIOENCODING = "UTF-8";
     SSH_KEY_PATH = "$HOME/.ssh/rsa_id";
     VIRTUAL_ENV_DISABLE_PROMPT = "1";
