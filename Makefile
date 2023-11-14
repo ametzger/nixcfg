@@ -6,10 +6,11 @@ ifndef HOSTNAME
  $(error Hostname unknown)
 endif
 
+RED    := $(shell tput -Txterm setaf 1)
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
-WHITE  := $(shell tput -Txterm setaf 7)
 CYAN   := $(shell tput -Txterm setaf 6)
+WHITE  := $(shell tput -Txterm setaf 7)
 RESET  := $(shell tput -Txterm sgr0)
 
 ## Meta:
@@ -26,9 +27,9 @@ help: ## Show this help.
 		}' $(MAKEFILE_LIST)
 	@echo ''
 	@echo 'Variables:'
-	@echo '  ${YELLOW}HOSTNAME:             ${GREEN}${HOSTNAME}${RESET}'
+	@echo '  ${YELLOW}HOSTNAME:             ${RED}${HOSTNAME}${RESET}'
 
-## Nix-darwin:
+## nix-darwin:
 .PHONY: darwin
 darwin: ## run a darwin-rebuild switch for the current host
 	@echo "Switching ${HOSTNAME}"
@@ -44,6 +45,23 @@ darwin-debug: ## run a darwin-rebuild switch for the current host with debugging
 		--extra-experimental-features 'nix-command flakes'
 
 	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME} --show-trace --verbose
+
+## home-manager:
+.PHONY: home
+home: ## run a home-manager switch for the current host
+	@echo "Home-manager switching ${HOSTNAME}"
+	nix build .#homeConfigurations.${HOSTNAME}.activationPackage \
+		--extra-experimental-features 'nix-command flakes'
+
+	./result/activate
+
+.PHONY: home-debug
+home-debug: ## run a home-manager switch for the current host
+	@echo "Home-manager debug switching ${HOSTNAME}"
+	nix build .#homeConfigurations.${HOSTNAME}.activationPackage --show-trace --verbose \
+		--extra-experimental-features 'nix-command flakes'
+
+	./result/activate
 
 ## Nix maintenance:
 .PHONY: update
