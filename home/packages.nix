@@ -17,6 +17,7 @@
       colima
       coreutils
       curl
+      dogdns
       detect-secrets
       elixir
       elixir-ls
