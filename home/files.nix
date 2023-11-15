@@ -25,5 +25,6 @@
   home.file.".pylintrc".source = ./etc/pylintrc;
   home.file.".ripgreprc".source = ./etc/ripgreprc;
   home.file.".spacemacs".source = ./etc/spacemacs;
+  home.file.".tmuxinator.yml".source = ./etc/tmuxinator.yml;
   home.file.".tool-versions".source = ./etc/tool-versions;
 }
