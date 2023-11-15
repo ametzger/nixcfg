@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     # ./emacs # wip
+    ./docker.nix
     ./fish.nix
     ./git.nix
     ./nvim.nix
@@ -13,7 +14,6 @@
     awscli
     black
     cascadia-code
-    colima
     coreutils
     curl
     dogdns
