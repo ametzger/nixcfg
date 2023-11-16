@@ -12,7 +12,12 @@
   # available, otherwise 'xterm-256color' is used.
   #TERM: xterm-256color
 
+
 window:
+  # HACK(asm,2023-11-16): Workaround for laggy expose animations while alacritty is in focus. See
+  # https://github.com/alacritty/alacritty/issues/4474#issuecomment-803972329
+  opacity: 0.999
+
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
