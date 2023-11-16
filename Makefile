@@ -33,16 +33,14 @@ help: ## Show this help.
 .PHONY: darwin
 darwin: ## run a darwin-rebuild switch for the current host
 	@echo "Switching ${HOSTNAME}"
-	nix build .#darwinConfigurations.${HOSTNAME}.system \
-		--extra-experimental-features 'nix-command flakes'
+	nix build .#darwinConfigurations.${HOSTNAME}.system
 
 	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME}
 
 .PHONY: darwin-debug
 darwin-debug: ## run a darwin-rebuild switch for the current host with debugging enabled
 	@echo "Debug switching ${HOSTNAME}"
-	nix build .#darwinConfigurations.${HOSTNAME}.system --show-trace --verbose \
-		--extra-experimental-features 'nix-command flakes'
+	nix build .#darwinConfigurations.${HOSTNAME}.system --show-trace --verbose
 
 	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME} --show-trace --verbose
 
@@ -50,16 +48,14 @@ darwin-debug: ## run a darwin-rebuild switch for the current host with debugging
 .PHONY: home
 home: ## run a home-manager switch for the current host
 	@echo "Home-manager switching ${HOSTNAME}"
-	nix build .#homeConfigurations.${HOSTNAME}.activationPackage \
-		--extra-experimental-features 'nix-command flakes'
+	nix build .#homeConfigurations.${HOSTNAME}.activationPackage
 
 	./result/activate
 
 .PHONY: home-debug
 home-debug: ## run a home-manager switch for the current host
 	@echo "Home-manager debug switching ${HOSTNAME}"
-	nix build .#homeConfigurations.${HOSTNAME}.activationPackage --show-trace --verbose \
-		--extra-experimental-features 'nix-command flakes'
+	nix build .#homeConfigurations.${HOSTNAME}.activationPackage --show-trace --verbose
 
 	./result/activate
 
