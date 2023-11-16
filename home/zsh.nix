@@ -1,13 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
-}: {
+{ pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
 
     envExtra = ''
