@@ -1,6 +1,4 @@
 { pkgs
-, lib
-, config
 , ...
 }: {
   programs.tmux = {
@@ -147,5 +145,5 @@
     '';
   };
 
-  # home.file.".tmuxinator.yml".source = ../../../tmuxinator.yml;
+  home.file.".tmuxinator.yml".source = ./etc/tmuxinator.yml;
 }
