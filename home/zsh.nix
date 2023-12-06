@@ -94,6 +94,8 @@
       eval "$(${pkgs.rtx}/bin/rtx activate zsh)"
     '';
 
+    profileExtra = ''
+      export PATH="${lib.concatStringsSep ":" config.home.sessionPath}:$PATH''${PATH:+:}"
     '';
   };
 }
