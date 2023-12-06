@@ -24,6 +24,7 @@
     fd
     figlet
     fantasque-sans-mono
+    functiontrace-server
     gnupg
     gnused
     httpie
