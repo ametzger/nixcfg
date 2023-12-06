@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -91,9 +91,9 @@
       zle_highlight+=(paste:none)
 
       ## rtx
-      if [ -x "$(command -v rtx)" ]; then
-        eval "$(rtx activate zsh)"
-      fi
+      eval "$(${pkgs.rtx}/bin/rtx activate zsh)"
+    '';
+
     '';
   };
 }
