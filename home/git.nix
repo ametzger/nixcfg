@@ -1,15 +1,11 @@
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   programs.git = {
     enable = true;
     package = pkgs.git;
 
     userName = "Alex Metzger";
     userEmail = "asm@asm.io";
-    signing = { key = "974B7213E1816927"; };
+    signing = { key = "974B7213E1816927"; }; # pragma: allowlist secret
 
     aliases = {
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
