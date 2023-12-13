@@ -62,6 +62,7 @@
           overlays = [ rtx-flake.overlay ];
           config = {
             allowUnfree = true;
+            input-fonts.acceptLicense = true;
           };
         }
       );

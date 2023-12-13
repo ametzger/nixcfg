@@ -32,8 +32,7 @@
     ibm-plex
     infracost
     iterm2
-    # NOTE(asm,2023-10-05): this requires some extra license/nonfree weirdness
-    # input-fonts
+    input-fonts
     jetbrains-mono
     jq
     just
