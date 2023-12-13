@@ -44,6 +44,10 @@ darwin-debug: ## run a darwin-rebuild switch for the current host with debugging
 
 	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME} --show-trace --verbose
 
+.PHONY: darwin-history
+darwin-history: ## show the history of the current profile
+	nix profile history --profile /nix/var/nix/profiles/system
+
 ## home-manager:
 .PHONY: home
 home: ## run a home-manager switch for the current host
@@ -59,14 +63,15 @@ home-debug: ## run a home-manager switch for the current host
 
 	./result/activate
 
+.PHONY: home-history
+home-history: ## show the history of the current profile
+	home-manager generations
+
 ## Nix maintenance:
 .PHONY: update
 update: ## update the flake.lock
 	nix flake update
 
-.PHONY: history
-history: ## show the history of the current profile
-	nix profile history --profile /nix/var/nix/profiles/system
 
 .PHONY: gc
 gc: ## clean up nix store
