@@ -55,15 +55,17 @@
       #       )
       #     ++ [ rtx-flake.overlay ];
 
+      nixpkgsConfig = {
+        allowUnfree = true;
+        input-fonts.acceptLicense = true;
+      };
+
       legacyPackages = forAllSystems (
         system:
         import nixpkgs {
           inherit system;
           overlays = [ rtx-flake.overlay ];
-          config = {
-            allowUnfree = true;
-            input-fonts.acceptLicense = true;
-          };
+          config = nixpkgsConfig;
         }
       );
 
@@ -98,6 +100,9 @@
         specialArgs = { inherit inputs; };
 
         modules = [
+          {
+            nixpkgs.config = nixpkgsConfig;
+          }
           ./modules/nix-core.nix
           ./modules/darwin.nix
           ./modules/system.nix
