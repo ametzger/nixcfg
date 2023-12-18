@@ -28,7 +28,7 @@ windows:
       panes:
         - # shell
   - misc:
-      root: ~/proj/dotfiles
+      root: ~/proj/nixcfg
       layout: even-horizontal
       panes:
         - # shell
