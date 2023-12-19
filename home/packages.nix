@@ -47,10 +47,12 @@
     openssl
     pgbouncer
     postgresql
-    python310Full
-    # python310Packages.ruff-lsp
-    python310Packages.mypy
-    python310Packages.pipx
+    (python310.withPackages (ps: with ps; [
+      ipython
+      mypy
+      pipx
+      # ruff-lsp
+    ]))
     rabbitmq-server
     reattach-to-user-namespace
     rectangle
