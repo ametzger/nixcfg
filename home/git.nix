@@ -178,5 +178,8 @@
     .envrc
     .env
     .direnv
+
+    # mise
+    .mise.local.toml
   '';
 }
