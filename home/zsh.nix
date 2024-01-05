@@ -90,8 +90,8 @@
       # do not highlight pasted text
       zle_highlight+=(paste:none)
 
-      ## rtx
-      eval "$(${pkgs.rtx}/bin/rtx activate zsh)"
+      ## mise
+      eval "$(${pkgs.mise}/bin/mise activate zsh)"
     '';
 
     profileExtra = ''

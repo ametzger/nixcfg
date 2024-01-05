@@ -16,8 +16,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rtx-flake = {
-      url = "github:jdxcode/rtx";
+    mise-flake = {
+      url = "github:jdx/mise";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
@@ -34,7 +34,7 @@
     , flake-utils
     , nix-darwin
     , home-manager
-    , rtx-flake
+    , mise-flake
     , devenv
     , nur
     , ...
@@ -53,7 +53,7 @@
       #           inherit (final.pkgs-x86);
       #         })
       #       )
-      #     ++ [ rtx-flake.overlay ];
+      #     ++ [ mise-flake.overlay ];
 
       nixpkgsConfig = {
         allowUnfree = true;
@@ -64,7 +64,7 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ rtx-flake.overlay ];
+          overlays = [ mise-flake.overlay ];
           config = nixpkgsConfig;
         }
       );

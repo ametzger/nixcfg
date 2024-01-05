@@ -58,7 +58,7 @@
     rectangle
     redis
     ripgrep
-    rtx
+    mise
     ruby
     # ruff
     shellcheck

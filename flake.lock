@@ -131,6 +131,29 @@
         "type": "github"
       }
     },
+    "mise-flake": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1704472634,
+        "narHash": "sha256-DIyEqAq1z0RFCQGZfFbbgVrE3CTQfmiL54k3WozHtvo=",
+        "owner": "jdx",
+        "repo": "mise",
+        "rev": "69f354df0e463edcdcbd12364a88013e5f5029f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jdx",
+        "repo": "mise",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -271,33 +294,10 @@
         "devenv": "devenv",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
+        "mise-flake": "mise-flake",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
-        "rtx-flake": "rtx-flake"
-      }
-    },
-    "rtx-flake": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1700103416,
-        "narHash": "sha256-bMxPXOb75jAIOBxdxgXVosnRk9kr6tWBp+EO0BOYse8=",
-        "owner": "jdxcode",
-        "repo": "rtx",
-        "rev": "5372bef4879f660a467729abe94c6a7d13872d2b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jdxcode",
-        "repo": "rtx",
-        "type": "github"
+        "nur": "nur"
       }
     },
     "systems": {

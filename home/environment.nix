@@ -47,7 +47,7 @@ in
     SSH_KEY_PATH = "$HOME/.ssh/rsa_id";
     VIRTUAL_ENV_DISABLE_PROMPT = "1";
     VISUAL = "nvim";
-    RTX_MISSING_RUNTIME_BEHAVIOR = "ignore";
+    MISE_MISSING_RUNTIME_BEHAVIOR = "ignore";
   };
 
   home.shellAliases = {
