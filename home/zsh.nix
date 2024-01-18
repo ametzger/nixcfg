@@ -7,6 +7,12 @@
     defaultKeymap = "emacs";
 
     envExtra = ''
+      # pyenv
+      if [[ -d ~/.pyenv ]]; then
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
+      fi
+
       # rbenv
       if [[ -d ~/.rbenv ]]; then
         export RBENV_ROOT="$HOME/.rbenv"
