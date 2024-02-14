@@ -11,13 +11,14 @@
   ];
 
   home.packages = with pkgs; [
+    awscli2
     awscli
     black
     cascadia-code
     coreutils
     curl
-    dogdns
     detect-secrets
+    dogdns
     elixir
     elixir-ls
     eza
@@ -75,7 +76,9 @@
     xmlsec
     zlib
     zsh
-  ];
+  ] ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
+    pkgs.tart
+  ]);
 
   # home-manager derived configurations
   programs.bash = {
@@ -95,11 +98,6 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
-
-  # programs.exa = {
-  #   enable = true;
-  #   enableAliases = true;
-  # };
 
   programs.fzf = {
     enable = true;
