@@ -241,6 +241,11 @@
         on_attach = on_attach
       }
 
+      lspconfig.rust_analyzer.setup {
+        cmd = { vim.fn.expand("~/.cargo/bin/rust-analyzer") },
+        on_attach = on_attach,
+      }
+
       lspconfig.terraformls.setup {
         cmd = { "${pkgs.terraform-ls}/bin/terraform-ls", "serve" },
         on_attach = on_attach,
