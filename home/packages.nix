@@ -12,7 +12,6 @@
 
   home.packages = with pkgs; [
     awscli2
-    awscli
     black
     cascadia-code
     coreutils
@@ -62,6 +61,7 @@
     mise
     ruby
     # ruff
+    ssm-session-manager-plugin
     shellcheck
     socat
     sops
