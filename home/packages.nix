@@ -70,6 +70,7 @@
     terraform-lsp
     tokei
     tree
+    tree-sitter
     trufflehog
     wget
     wrk
