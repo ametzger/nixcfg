@@ -16,6 +16,7 @@
     cascadia-code
     coreutils
     curl
+    delta
     detect-secrets
     dogdns
     elixir

@@ -24,25 +24,35 @@
     };
 
     extraConfig = {
-      github = { user = "ametzger"; };
-      gitlab = { user = "ametzger"; };
-      credential = { helper = "osxkeychain"; };
       core = {
         editor = "emacsclient -t -a=\\\"\\\"";
         whitespace = "trailing-space,space-before-tab,-indent-with-non-tab";
         filemode = "false";
         excludesfile = "~/.gitignore_global";
         attributesfile = "~/.gitattributes";
+        pager = "${pkgs.delta}/bin/delta";
       };
+      github = { user = "ametzger"; };
+      gitlab = { user = "ametzger"; };
+      credential = { helper = "osxkeychain"; };
       push = { default = "simple"; };
       color = { ui = "auto"; };
       log = { decorate = "true"; };
       pull = { ff = "only"; };
       branch = { autoSetupMerge = "always"; };
-      diff = { algorithm = "patience"; };
+      diff = {
+        algorithm = "patience";
+        colorMoved = "default";
+      };
       rebase = { autoStash = "true"; };
       init = { defaultBranch = "main"; };
       advice = { detachedHead = "false"; };
+      interactive = { diffFilter = "${pkgs.delta}/bin/delta --color-only"; };
+      delta = {
+        navigate = "true";
+        light = "false";
+      };
+      merge = { conflictstyle = "diff3"; };
       mergetool = {
         keepBackup = "false";
         keepTemporaries = "false";
