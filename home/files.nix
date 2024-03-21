@@ -7,9 +7,9 @@
   };
 
   home.file.".asdfrc".source = ./etc/asdfrc;
-  home.file.".config/alacritty/alacritty.yml".source = pkgs.substituteAll {
-    name = "alacritty.yml";
-    src = ./etc/alacritty.yml;
+  home.file.".config/alacritty/alacritty.toml".source = pkgs.substituteAll {
+    name = "alacritty.toml";
+    src = ./etc/alacritty.toml;
     zsh = "${pkgs.zsh}";
   };
   home.file.".config/black".source = ./etc/black;
