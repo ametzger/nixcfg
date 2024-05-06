@@ -37,7 +37,6 @@
     jetbrains-mono
     jq
     just
-    # magic-wormhole
     mtr
     nil
     nixpkgs-fmt
