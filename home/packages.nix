@@ -46,7 +46,7 @@
     openblas
     openssl
     pgbouncer
-    postgresql
+    # postgresql
     (python310.withPackages (ps: with ps; [
       ipython
       mypy
