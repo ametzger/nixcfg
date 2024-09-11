@@ -43,7 +43,7 @@
     nixpkgs-fmt
     nmap
     nodejs
-    nodePackages.pyright
+    pyright
     openblas
     openssl
     pgbouncer

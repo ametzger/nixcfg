@@ -237,7 +237,7 @@
       }
 
       lspconfig.pyright.setup {
-        cmd = { "${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio" },
+        cmd = { "${pkgs.pyright}/bin/pyright-langserver", "--stdio" },
         on_attach = on_attach
       }
 
