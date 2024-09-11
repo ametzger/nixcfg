@@ -22,7 +22,7 @@ in
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin [
       "/run/current-system/sw/bin"
-      "/opt/local/homebrew/bin"
+      "/opt/homebrew/bin"
     ];
 
   home.sessionVariables = {
