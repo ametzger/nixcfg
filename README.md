@@ -23,5 +23,5 @@ From a fresh macOS install:
 5. Install `brew`: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 6. Clone repo: `nix run nixpkgs#git -- clone git@github.com:ametzger/nixcfg.git`
 7. Install macos stuff: `brew bundle install`
-7. Add line to `flake.nix` for the new hostname, so `homeConfigurations."$NEW_HOSTNAME"` exists
-8. Setup home-manager and activate the profile: `nix run nixpkgs#just -- home`
+8. Add line to `flake.nix` for the new hostname, so `homeConfigurations."$NEW_HOSTNAME"` exists
+9. Setup home-manager and activate the profile: `nix run nixpkgs#just -- home`
