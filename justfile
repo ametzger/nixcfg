@@ -8,24 +8,6 @@ help:
     @echo "Variables:"
     @echo "  HOSTNAME: ${HOSTNAME}"
 
-# run a darwin-rebuild switch for the current host
-darwin:
-	@echo "Switching ${HOSTNAME}"
-	nix build .#darwinConfigurations.${HOSTNAME}.system
-
-	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME}
-
-# run a darwin-rebuild switch for the current host with debugging enabled
-darwin-debug:
-	@echo "Debug switching ${HOSTNAME}"
-	nix build .#darwinConfigurations.${HOSTNAME}.system --show-trace --verbose
-
-	./result/sw/bin/darwin-rebuild switch --flake .#${HOSTNAME} --show-trace --verbose
-
-# show the history of the current profile
-darwin-history:
-	nix profile history --profile /nix/var/nix/profiles/system
-
 # run a home-manager switch for the current host
 home:
 	@echo "Home-manager switching ${HOSTNAME}"
@@ -33,7 +15,7 @@ home:
 
 	./result/activate
 
-# run a home-manager switch for the current host
+# run a home-manager switch for the current host with debug tracing
 home-debug:
 	@echo "Home-manager debug switching ${HOSTNAME}"
 	nix build .#homeConfigurations.${HOSTNAME}.activationPackage --show-trace --verbose

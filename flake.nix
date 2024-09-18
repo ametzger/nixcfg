@@ -8,10 +8,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +28,6 @@
     inputs @ { self
     , nixpkgs
     , flake-utils
-    , nix-darwin
     , home-manager
     , mise-flake
     , devenv
@@ -92,33 +87,6 @@
     {
       formatter.aarch64-darwin = nixpkgs.legacyPackages."aarch64-darwin".nixpkgs-fmt;
       formatter.x86_64-darwin = nixpkgs.legacyPackages."x86_64-darwin".nixpkgs-fmt;
-
-      # darwinConfigurations."asm-mbp-16" = nix-darwin.lib.darwinSystem {
-      #   system = "x86_64-darwin";
-
-      #   # expose flake's inputs as param
-      #   specialArgs = { inherit inputs; };
-
-      #   modules = [
-      #     {
-      #       nixpkgs.config = nixpkgsConfig;
-      #     }
-      #     ./modules/nix-core.nix
-      #     ./modules/darwin.nix
-      #     ./modules/system.nix
-      #     # ./modules/homebrew.nix # wip - currently kills non-managed brew packages, so not using for now
-
-      #     home-manager.darwinModules.home-manager
-      #     {
-      #       home-manager.useGlobalPkgs = true;
-      #       home-manager.useUserPackages = true;
-
-      #       home-manager.extraSpecialArgs = inputs;
-
-      #       home-manager.users.asm = import ./home;
-      #     }
-      #   ];
-      # };
 
       homeConfigurations."asm-mbp-16" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."x86_64-darwin";
       homeConfigurations."asm-mbp-14" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
