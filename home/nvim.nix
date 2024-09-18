@@ -40,6 +40,7 @@
           ]
       ))
       nvim-treesitter-parsers.terraform
+      nvim-treesitter-parsers.just
       plenary-nvim
       popup-nvim
       telescope-nvim
