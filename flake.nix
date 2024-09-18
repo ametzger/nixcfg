@@ -17,10 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    devenv = {
-      url = "github:cachix/devenv/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur.url = "github:nix-community/NUR";
   };
 
@@ -30,25 +26,12 @@
     , flake-utils
     , home-manager
     , mise-flake
-    , devenv
     , nur
     , ...
     }:
     let
       supportedSystems = [ "x86_64-darwin" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-
-      # inherit (nixpkgs.lib) optionalAttrs singleton;
-
-      # overlays =
-      #   singleton
-      #       (
-      #         # Sub in x86 version of packages that don't build on Apple Silicon yet
-      #         final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-      #           inherit (final.pkgs-x86);
-      #         })
-      #       )
-      #     ++ [ mise-flake.overlay ];
 
       nixpkgsConfig = {
         allowUnfree = true;
@@ -76,9 +59,6 @@
         system: {
           pkgs = legacyPackages."${system}";
           modules = [
-            {
-              home.packages = [ devenv.packages."${system}".devenv ];
-            }
             ./home
           ];
         }
