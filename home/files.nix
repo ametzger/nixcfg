@@ -19,6 +19,7 @@
   home.file.".direnvrc".source = ./etc/direnvrc;
   home.file.".editorconfig".source = ./etc/editorconfig;
   home.file.".gemrc".source = ./etc/gemrc;
+  home.file.".ipython/profile_default/ipython_config.py".source = ./etc/ipython_config.py;
   home.file.".irbrc".source = ./etc/irbrc;
   home.file.".psqlrc".source = ./etc/psqlrc;
   home.file.".pylintrc".source = ./etc/pylintrc;
