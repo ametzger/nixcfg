@@ -1,9 +1,10 @@
 # clojure 1.10.2.774
-terraform 1.1.7
-nodejs 16.20.2
-# ruby 3.0.2
-golang 1.18
 elixir 1.13.3-otp-24
-python 3.11
+golang 1.18
+nodejs 16.20.2
 pdm 2.16.1
+python 3.11
+# ruby 3.0.2
+terraform 1.1.7
+uv 0.4.10
 zig 0.11.0
