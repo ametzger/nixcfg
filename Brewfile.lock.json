@@ -2,10 +2,10 @@
   "entries": {
     "tap": {
       "d12frosted/emacs-plus": {
-        "revision": "c6e5ad1b96570fbe3487d0ed94b5275b02b0b768"
+        "revision": "cc3280dfdf7562dd69c97d0dfa872b1c3313a18a"
       },
       "homebrew/bundle": {
-        "revision": "acfb8210d4366ff63fa23d6a7a8ddbacd0234532"
+        "revision": "8b0df4d29278e734a00121dd453fe9758e5486ed"
       }
     },
     "brew": {
@@ -76,6 +76,16 @@
             "with-nobu417-big-sur-icon"
           ]
         }
+      },
+      "d12frosted/emacs-plus/emacs-plus@30": {
+        "version": "30.0.91",
+        "bottle": false,
+        "options": {
+          "args": [
+            "with-native-comp",
+            "with-nobu417-big-sur-icon"
+          ]
+        }
       }
     },
     "cask": {
@@ -110,7 +120,7 @@
         }
       },
       "brave-browser": {
-        "version": "1.69.162.0",
+        "version": "1.69.168.0",
         "options": {
           "full_name": "brave-browser"
         }
@@ -122,31 +132,31 @@
         }
       },
       "docker": {
-        "version": "4.34.0,165256",
+        "version": "4.34.2,167172",
         "options": {
           "full_name": "docker"
         }
       },
       "dropbox": {
-        "version": "206.4.6506",
+        "version": "208.4.5824",
         "options": {
           "full_name": "dropbox"
         }
       },
       "fantastical": {
-        "version": "3.8.23",
+        "version": "3.9",
         "options": {
           "full_name": "fantastical"
         }
       },
       "firefox": {
-        "version": "130.0",
+        "version": "130.0.1",
         "options": {
           "full_name": "firefox"
         }
       },
       "google-chrome": {
-        "version": "128.0.6613.138",
+        "version": "129.0.6668.59",
         "options": {
           "full_name": "google-chrome"
         }
@@ -164,13 +174,13 @@
         }
       },
       "rectangle": {
-        "version": "0.82",
+        "version": "0.83",
         "options": {
           "full_name": "rectangle"
         }
       },
       "slack": {
-        "version": "4.40.126",
+        "version": "4.40.128",
         "options": {
           "full_name": "slack"
         }
@@ -188,7 +198,7 @@
         }
       },
       "zoom": {
-        "version": "6.1.11.39163",
+        "version": "6.2.0.40111",
         "options": {
           "full_name": "zoom"
         }
@@ -205,7 +215,7 @@
       },
       "Drafts": {
         "id": "1435957248",
-        "version": "44.2.1"
+        "version": "45.0"
       },
       "Keynote": {
         "id": "409183694",
@@ -229,19 +239,19 @@
       },
       "Things": {
         "id": "904280696",
-        "version": "3.20.9"
+        "version": "3.21"
       }
     }
   },
   "system": {
     "macos": {
       "sonoma": {
-        "HOMEBREW_VERSION": "4.3.20",
+        "HOMEBREW_VERSION": "4.3.23",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
-        "CLT": "15.3.0.0.1.1708646388",
-        "Xcode": "15.4",
-        "macOS": "14.6"
+        "CLT": "16.0.0.0.1.1724870825",
+        "Xcode": "16.0",
+        "macOS": "14.7"
       }
     }
   }
