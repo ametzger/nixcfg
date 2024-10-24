@@ -54,6 +54,7 @@
       pipx
       # ruff-lsp
     ]))
+    qmk
     rabbitmq-server
     reattach-to-user-namespace
     rectangle

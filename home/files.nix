@@ -26,4 +26,5 @@
   home.file.".ripgreprc".source = ./etc/ripgreprc;
   home.file.".spacemacs".source = ./etc/spacemacs;
   home.file.".tool-versions".source = ./etc/tool-versions;
+  home.file."Library/Application Support/qmk/qmk.ini".source = ./etc/qmk.ini;
 }
