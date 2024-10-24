@@ -5,6 +5,7 @@ HOSTNAME := `scutil --get LocalHostName`
 # list available tasks
 help:
     @just --list
+    @echo ""
     @echo "Variables:"
     @echo "  HOSTNAME: ${HOSTNAME}"
 
