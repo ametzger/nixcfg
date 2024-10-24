@@ -23,9 +23,9 @@
     elixir
     elixir-ls
     eza
+    fantasque-sans-mono
     fd
     figlet
-    fantasque-sans-mono
     functiontrace-server
     gnupg
     gnused
@@ -33,21 +33,22 @@
     hyperfine
     ibm-plex
     infracost
-    iterm2
     input-fonts
+    iterm2
     jetbrains-mono
     jq
     just
+    mise
     mtr
     nil
     nixpkgs-fmt
     nmap
     nodejs
-    pyright
     openblas
     openssl
     pgbouncer
     # postgresql
+    pyright
     (python310.withPackages (ps: with ps; [
       ipython
       mypy
@@ -60,16 +61,15 @@
     rectangle
     redis
     ripgrep
-    mise
     ruby
     # ruff
-    ssm-session-manager-plugin
     shellcheck
     socat
     sops
-    tflint
+    ssm-session-manager-plugin
     terraform-ls
     terraform-lsp
+    tflint
     tokei
     tree
     tree-sitter
