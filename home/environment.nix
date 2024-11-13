@@ -59,7 +59,7 @@ in
     p = "pdm run";
     scratch = "nvim ~/scratch.txt";
     sp = "EDITOR=emacs m shell_plus";
-    t = "p env DJANGO_SETTINGS_MODULE=jellyfish.settings.test python manage.py test";
+    t = "p pytest --reuse-db --ds=jellyfish.settings.test";
     vim = "nvim";
   };
 }
