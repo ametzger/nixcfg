@@ -43,6 +43,7 @@ in
     ];
     PYTHONIOENCODING = "UTF-8";
     SSH_KEY_PATH = "$HOME/.ssh/rsa_id";
+    SHELL = "${pkgs.zsh}/bin/zsh";
     VIRTUAL_ENV_DISABLE_PROMPT = "1";
     VISUAL = "nvim";
     MISE_MISSING_RUNTIME_BEHAVIOR = "ignore";

@@ -8,13 +8,21 @@
     keyMode = "emacs";
     baseIndex = 1;
 
-    plugins = with pkgs; [
-      tmuxPlugins.yank
-      tmuxPlugins.prefix-highlight
-      tmuxPlugins.pain-control
-      tmuxPlugins.copycat
-      tmuxPlugins.better-mouse-mode
-    ];
+    shell = "${pkgs.zsh}/bin/zsh";
+
+    # NOTE(asm,2024-11-13): for some reason, this seems to be forcing my shell to be `/bin/sh`, I
+    # think there's something busted with `reattach-to-user-namespace`. Almost all of the sensible
+    # stuff is already in my config, so just disable it.
+    sensibleOnTop = false;
+
+    plugins = with pkgs.tmuxPlugins;
+      [
+        better-mouse-mode
+        copycat
+        pain-control
+        prefix-highlight
+        yank
+      ];
 
     tmuxinator = {
       enable = true;
