@@ -10,7 +10,7 @@ windows:
       panes:
         - m runserver
         - npm start
-        - scripts/notebook orthogonal-networks
+        - scripts/notebook --no-browser orthogonal-networks
   - srv-dx:
       root: ~/proj/devex
       layout: even-horizontal
