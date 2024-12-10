@@ -19,6 +19,7 @@
     delta
     detect-secrets
     dogdns
+    drill
     duckdb
     elixir
     elixir-ls
