@@ -1,6 +1,19 @@
+# -*- mode: conf -*-
+
 font-family = "Fantasque Sans Mono"
 font-size = 22
+
 cursor-style = block
 # shell integration forces the default cursor to a bar
 shell-integration-features = no-cursor
+
 title = " "
+
+copy-on-select = true
+
+# quick terminal
+keybind = global:opt+space=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-screen = macos-menu-bar
+
+auto-update = off
