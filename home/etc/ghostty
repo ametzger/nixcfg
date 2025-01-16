@@ -17,3 +17,5 @@ quick-terminal-position = top
 quick-terminal-screen = macos-menu-bar
 
 auto-update = off
+
+theme = dark:nord,light:nord-light
