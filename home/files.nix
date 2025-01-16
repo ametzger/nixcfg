@@ -14,6 +14,7 @@
   };
   home.file.".config/black".source = ./etc/black;
   home.file.".config/flake8".source = ./etc/flake8;
+  home.file.".config/ghostty/config".source = ./etc/ghostty;
   home.file.".config/kitty/kitty.conf".source = ./etc/kitty.conf;
   home.file.".default-python-packages".source = ./etc/default-python-packages;
   home.file.".direnvrc".source = ./etc/direnvrc;
