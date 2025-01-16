@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby
+
 tap "homebrew/bundle"
 
 brew "mas"
@@ -16,6 +19,7 @@ cask "docker"
 cask "dropbox"
 cask "fantastical"
 cask "firefox"
+cask "ghostty"
 cask "google-chrome"
 cask "iterm2"
 cask "pycharm"
