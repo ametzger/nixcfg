@@ -58,6 +58,7 @@ in
     m = "p python manage.py";
     nix-cleanup = "nix-collect-garbage --delete-old";
     p = "pdm run";
+    psg = "ps auxwww | rg";
     scratch = "nvim ~/scratch.txt";
     sp = "EDITOR=emacs m shell_plus";
     t = "p pytest --reuse-db --ds=jellyfish.settings.test";
