@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  # TODO(asm,2025-01-28): remove this once https://github.com/NixOS/nixpkgs/pull/375601 is merged
+  displayplacer = import ./displayplacer.nix {
+    inherit (pkgs) lib stdenv fetchFromGitHub makeWrapper darwin apple-sdk;
+  };
+in
+{
   imports = [
     # ./emacs # wip
     ./docker.nix
@@ -18,6 +25,7 @@
     curl
     delta
     detect-secrets
+    displayplacer
     dogdns
     drill
     duckdb
