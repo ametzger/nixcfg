@@ -14,12 +14,15 @@ build:
     @echo "Building ${HOSTNAME}"
     nix build .#homeConfigurations.${HOSTNAME}.activationPackage
 
+# activate the current home-manager generation
+activate:
+    @echo "Home-manager switching ${HOSTNAME}"
+    ./result/activate
+
 alias home := switch
 
 # run a home-manager switch for the current host
-switch: build
-    @echo "Home-manager switching ${HOSTNAME}"
-    ./result/activate
+switch: build activate
 
 # run a home-manager build for the current host with debug tracing
 debug:
