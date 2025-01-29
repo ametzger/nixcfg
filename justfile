@@ -21,12 +21,10 @@ switch: build
     @echo "Home-manager switching ${HOSTNAME}"
     ./result/activate
 
-# run a home-manager switch for the current host with debug tracing
+# run a home-manager build for the current host with debug tracing
 debug:
     @echo "Home-manager debug switching ${HOSTNAME}"
     nix build .#homeConfigurations.${HOSTNAME}.activationPackage --show-trace --verbose
-
-    ./result/activate
 
 # show the history of the current profile
 history:

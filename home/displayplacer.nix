@@ -22,11 +22,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     apple-sdk.privateFrameworksHook
-    darwin.apple_sdk.frameworks.IOKit
-    darwin.apple_sdk.frameworks.Foundation
     darwin.apple_sdk.frameworks.ApplicationServices
-    darwin.apple_sdk.frameworks.DisplayServices
     darwin.apple_sdk.frameworks.CoreDisplay
+    darwin.apple_sdk.frameworks.DisplayServices
+    darwin.apple_sdk.frameworks.Foundation
+    darwin.apple_sdk.frameworks.IOKit
     darwin.apple_sdk.frameworks.SkyLight
     darwin.apple_sdk.frameworks.System
   ];
