@@ -34,6 +34,7 @@ in
     DOCKER_SCAN_SUGGEST = "false";
     DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
+    HOMEBREW_NO_ENV_HINTS = "1";
     LANG = "en_US.UTF-8";
     LESS = "-R";
     LSCOLORS = "exfxcxdxbxegedabagacad";
