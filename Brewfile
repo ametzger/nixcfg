@@ -6,7 +6,7 @@ tap "homebrew/bundle"
 brew "mas"
 
 tap "d12frosted/emacs-plus"
-brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-native-comp", "with-nobu417-big-sur-icon"]
+brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-modern-alecive-flatwoken-icon"]
 
 cask "1password"
 cask "1password-cli"
@@ -22,6 +22,7 @@ cask "firefox"
 cask "ghostty"
 cask "google-chrome"
 cask "iterm2"
+cask "omnifocus"
 cask "pycharm"
 cask "rectangle"
 cask "slack"
