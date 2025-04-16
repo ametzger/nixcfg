@@ -58,7 +58,7 @@ in
     pgbouncer
     # postgresql
     pyright
-    (python310.withPackages (ps: with ps; [
+    (python311.withPackages (ps: with ps; [
       ipython
       mypy
       pipx

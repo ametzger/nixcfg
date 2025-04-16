@@ -33,7 +33,7 @@ debug:
 history:
     home-manager generations
 
-# update the flake.lock
+# update flake.lock
 update:
     nix flake update
 
