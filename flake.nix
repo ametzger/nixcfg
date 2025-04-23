@@ -11,16 +11,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mise-flake = {
-      url = "github:jdx/mise";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     { nixpkgs
     , home-manager
-    , mise-flake
     , ...
     }:
     let
@@ -36,7 +31,6 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ mise-flake.overlay ];
           config = nixpkgsConfig;
         }
       );
@@ -55,5 +49,7 @@
 
       homeConfigurations."asm-mbp-14" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
       homeConfigurations."asm-mba-13" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
+
+      packages = pkgs;
     };
 }
