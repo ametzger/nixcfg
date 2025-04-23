@@ -25,7 +25,6 @@ in
     curl
     delta
     detect-secrets
-    displayplacer
     dogdns
     drill
     duckdb
@@ -88,6 +87,7 @@ in
     zlib
     zsh
   ] ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
+    displayplacer
     pkgs.tart
   ]);
 
