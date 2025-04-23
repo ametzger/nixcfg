@@ -21,7 +21,7 @@ From a fresh macOS install:
    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
    ```
 5. Install `brew`: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-6. Clone repo: `nix run nixpkgs#git -- clone git@github.com:ametzger/nixcfg.git`
+6. Clone repo: `mkdir -p ~/proj; nix run nixpkgs#git -- clone git@github.com:ametzger/nixcfg.git ~/proj/nixcfg`
 7. Install macos stuff: `brew bundle install`
 8. Add line to `flake.nix` for the new hostname, so `homeConfigurations."$NEW_HOSTNAME"` exists
-9. Setup home-manager and activate the profile: `nix run nixpkgs#just -- home`
+9. Setup home-manager and activate the profile: `nix run nixpkgs#just -- switch`

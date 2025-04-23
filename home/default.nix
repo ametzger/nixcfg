@@ -18,6 +18,7 @@ in
   imports = [
     ./files.nix
     ./environment.nix
+    ./nix.nix
     ./packages.nix
   ];
 }
