@@ -11,11 +11,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs
     , home-manager
+    , nix-index-database
     , ...
     }:
     let
@@ -40,6 +45,11 @@
           pkgs = pkgs."${system}";
           modules = [
             ./home
+
+            # needed for comma to work
+            nix-index-database.hmModules.nix-index
+            { programs.nix-index-database.comma.enable = true; }
+
           ];
         }
       );
