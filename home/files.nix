@@ -13,6 +13,7 @@
     zsh = "${pkgs.zsh}";
   };
   home.file.".config/black".source = ./etc/black;
+  home.file.".config/direnv/direnv.toml".source = ./etc/direnv.toml;
   home.file.".config/flake8".source = ./etc/flake8;
   home.file.".config/ghostty/config".source = ./etc/ghostty;
   home.file.".config/kitty/kitty.conf".source = ./etc/kitty.conf;
