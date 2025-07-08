@@ -191,5 +191,8 @@
 
     # mise
     .mise.local.toml
+
+    # claude
+    .claude/
   '';
 }
