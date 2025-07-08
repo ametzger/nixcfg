@@ -11,3 +11,4 @@ zig = "0.11.0"
 [settings]
 python_compile = true
 experimental = true
+idiomatic_version_file_enable_tools = ["python"]
