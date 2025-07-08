@@ -25,6 +25,6 @@
   home.file.".pylintrc".source = ./etc/pylintrc;
   home.file.".ripgreprc".source = ./etc/ripgreprc;
   home.file.".spacemacs".source = ./etc/spacemacs;
-  home.file.".tool-versions".source = ./etc/tool-versions;
+  home.file.".config/mise/config.toml".source = ./etc/mise-config.toml;
   home.file."Library/Application Support/qmk/qmk.ini".source = ./etc/qmk.ini;
 }
