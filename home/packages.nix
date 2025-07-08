@@ -21,6 +21,7 @@ in
     awscli2
     black
     cascadia-code
+    claude-code
     coreutils
     curl
     delta

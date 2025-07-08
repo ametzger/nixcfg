@@ -15,12 +15,17 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs
     , home-manager
     , nix-index-database
+    , claude-code
     , ...
     }:
     let
@@ -37,6 +42,7 @@
         import nixpkgs {
           inherit system;
           config = nixpkgsConfig;
+          overlays = [ claude-code.overlays.default ];
         }
       );
 
