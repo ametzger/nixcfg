@@ -2,7 +2,7 @@
 let
   # TODO(asm,2025-01-28): remove this once https://github.com/NixOS/nixpkgs/pull/375601 is merged
   displayplacer = import ./displayplacer.nix {
-    inherit (pkgs) lib stdenv fetchFromGitHub makeWrapper darwin apple-sdk;
+    inherit (pkgs) lib stdenv fetchFromGitHub makeWrapper apple-sdk;
   };
 in
 {
@@ -64,7 +64,8 @@ in
       pipx
       # ruff-lsp
     ]))
-    qmk
+    # TODO(asm,2025-10-08): This is busted on the current version of nixpkgs.
+    # qmk
     rabbitmq-server
     reattach-to-user-namespace
     rectangle
@@ -121,8 +122,10 @@ in
 
   programs.go = {
     enable = true;
-    goPath = "proj/go";
-    goBin = "proj/go/bin";
+    env = {
+      GOPATH = "proj/go";
+      GOBIN = "proj/go/bin";
+    };
   };
 
   programs.kakoune.enable = true;

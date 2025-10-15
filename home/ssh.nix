@@ -2,15 +2,20 @@
   programs.ssh = {
     enable = true;
 
-    forwardAgent = false;
+    enableDefaultConfig = false;
+
     extraConfig = ''
-      AddKeysToAgent yes
       UseKeychain yes
     '';
 
     includes = [ "~/.ssh/config.private" ];
 
     matchBlocks = {
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "yes";
+      };
+
       "i-*" = {
         proxyCommand = ''
           sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"

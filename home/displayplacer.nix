@@ -2,7 +2,6 @@
 , stdenv
 , fetchFromGitHub
 , makeWrapper
-, darwin
 , apple-sdk
 }:
 stdenv.mkDerivation (finalAttrs: {
@@ -22,13 +21,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     apple-sdk.privateFrameworksHook
-    darwin.apple_sdk.frameworks.ApplicationServices
-    darwin.apple_sdk.frameworks.CoreDisplay
-    darwin.apple_sdk.frameworks.DisplayServices
-    darwin.apple_sdk.frameworks.Foundation
-    darwin.apple_sdk.frameworks.IOKit
-    darwin.apple_sdk.frameworks.SkyLight
-    darwin.apple_sdk.frameworks.System
+    apple-sdk
   ];
 
   buildPhase = ''
@@ -47,6 +40,5 @@ stdenv.mkDerivation (finalAttrs: {
     mainProgram = "displayplacer";
     platforms = lib.platforms.darwin;
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ ametzger ];
   };
 })
