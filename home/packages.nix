@@ -65,7 +65,7 @@ in
       # ruff-lsp
     ]))
     # TODO(asm,2025-10-08): This is busted on the current version of nixpkgs.
-    # qmk
+    qmk
     rabbitmq-server
     reattach-to-user-namespace
     rectangle
