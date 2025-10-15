@@ -11,22 +11,22 @@ windows:
         - m runserver
         - npm start
         - scripts/notebook --no-browser orthogonal-networks
-  - srv-dx:
-      root: ~/proj/devex
-      layout: even-horizontal
-      panes:
-        - m runserver 9000
-        - npm start
+  # - srv-dx:
+  #     root: ~/proj/devex
+  #     layout: even-horizontal
+  #     panes:
+  #       - m runserver 9000
+  #       - npm start
   - jellyfish:
       root: ~/proj/jellyfish
       layout: even-horizontal
       panes:
         - # shell
-  - devex:
-      root: ~/proj/devex
-      layout: even-horizontal
-      panes:
-        - # shell
+  # - devex:
+  #     root: ~/proj/devex
+  #     layout: even-horizontal
+  #     panes:
+  #       - # shell
   - infra:
       root: ~/proj/infra
       layout: even-horizontal
