@@ -1,6 +1,4 @@
 { pkgs
-, lib
-, config
 , ...
 }: {
   programs.neovim = {
@@ -230,40 +228,43 @@
       -- auto format on save
       vim.cmd [[autocmd BufWritePre *.nix lua vim.lsp.buf.format()]]
 
-      local lspconfig = require('lspconfig')
-
-      -- setting up the elixir language server
-      -- you have to manually specify the entrypoint cmd for elixir-ls
-      lspconfig.elixirls.setup {
-        cmd = { "${pkgs.elixir-ls}/lib/language_server.sh" },
+      -- lsp config, point them at nix language server paths
+      vim.lsp.config('elixirls', {
+        cmd = { "${pkgs.elixir-ls}/scripts/language_server.sh" },
         on_attach = on_attach
-      }
+      })
+      vim.lsp.enable('elixirls')
 
-      lspconfig.pyright.setup {
+      vim.lsp.config('pyright', {
         cmd = { "${pkgs.pyright}/bin/pyright-langserver", "--stdio" },
         on_attach = on_attach
-      }
+      })
+      vim.lsp.enable('pyright')
 
-      lspconfig.rust_analyzer.setup {
+      vim.lsp.config('rust_analyzer', {
         cmd = { vim.fn.expand("~/.cargo/bin/rust-analyzer") },
         on_attach = on_attach,
-      }
+      })
+      vim.lsp.enable('rust_analyzer')
 
-      lspconfig.terraformls.setup {
+      vim.lsp.config('terraformls', {
         cmd = { "${pkgs.terraform-ls}/bin/terraform-ls", "serve" },
         on_attach = on_attach,
-      }
+      })
+      vim.lsp.enable('terraformls')
 
-      lspconfig.terraform_lsp.setup {
+      vim.lsp.config('terraform_lsp', {
         cmd = { "${pkgs.terraform-lsp}/bin/terraform-lsp" },
         on_attach = on_attach
-      }
+      })
+      vim.lsp.enable('terraform_lsp')
 
-      lspconfig.tflint.setup {
+      vim.lsp.config('tflint', {
         cmd = { '${pkgs.tflint}/bin/tflint', '--langserver' }
-      }
+      })
+      vim.lsp.enable('tflint')
 
-      lspconfig.nil_ls.setup {
+      vim.lsp.config('nil_ls', {
         cmd = { '${pkgs.nil}/bin/nil' },
         settings = {
           ['nil'] = {
@@ -272,7 +273,8 @@
             },
           }
         }
-      }
+      })
+      vim.lsp.enable('nil_ls')
 
       -- gitlinker
       require('gitlinker').setup()
