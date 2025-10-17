@@ -49,3 +49,7 @@ fmt:
 # clean up build artifacts
 clean:
     rm -rf result
+
+# enter the development shell
+shell:
+    nix develop

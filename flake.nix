@@ -19,6 +19,10 @@
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -26,6 +30,7 @@
     , home-manager
     , nix-index-database
     , claude-code
+    , nur
     , ...
     }:
     let
@@ -47,7 +52,14 @@
       );
 
       homeManagerConfigs = forAllSystems (
-        system: {
+        system:
+        let
+          nurPkgs = import nur {
+            nurpkgs = pkgs."${system}";
+            pkgs = pkgs."${system}";
+          };
+        in
+        {
           pkgs = pkgs."${system}";
           modules = [
             ./home
@@ -57,6 +69,9 @@
             { programs.nix-index-database.comma.enable = true; }
 
           ];
+          extraSpecialArgs = {
+            nur = nurPkgs;
+          };
         }
       );
     in
@@ -67,5 +82,32 @@
       homeConfigurations."asm-mba-13" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
 
       packages = pkgs;
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgsForSystem = pkgs."${system}";
+        in
+        {
+          default = pkgsForSystem.mkShell {
+            packages = with pkgsForSystem; [
+              nixpkgs-fmt
+              nil
+              just
+            ];
+
+            shellHook = ''
+              echo "Nix configuration development shell"
+              echo "Available commands:"
+              echo "  just build    - Build the configuration"
+              echo "  just switch   - Build and activate"
+              echo "  just fmt      - Format Nix files"
+              echo "  just debug    - Build with debug output"
+              echo ""
+              echo "Current hostname: $(scutil --get LocalHostName 2>/dev/null || hostname)"
+            '';
+          };
+        }
+      );
     };
 }

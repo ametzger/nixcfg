@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-    # ./emacs # wip
+    ./emacs
     ./docker.nix
     ./fish.nix
     ./git.nix
@@ -64,7 +64,6 @@ in
       pipx
       # ruff-lsp
     ]))
-    # TODO(asm,2025-10-08): This is busted on the current version of nixpkgs.
     qmk
     rabbitmq-server
     reattach-to-user-namespace
