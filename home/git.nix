@@ -194,5 +194,8 @@
 
     # claude
     .claude/
+
+    # ipython/jupyter
+    .ipynb_checkpoints/
   '';
 }
