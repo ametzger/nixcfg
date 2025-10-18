@@ -1106,6 +1106,7 @@ in
           "(js-mode . lsp-deferred)"
           "(terraform-mode . lsp-deferred)"
           "(nix-mode . lsp-deferred)"
+          "(python-mode . lsp-deferred)"
           "(rust-mode . lsp-deferred)"
         ];
         config = ''
