@@ -1,7 +1,7 @@
 { pkgs, nur, ... }:
 let
   activeTheme = "doom-nord";
-  # customEmacsIcon = ./Emacs.icns;
+  customEmacsIcon = ./modern-alecive-flatwoken.icns;
 in
 {
   imports = [
@@ -10,18 +10,17 @@ in
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs30;
+    # package = pkgs.emacs30;
 
     # TODO(asm,2025-10-17): This will override the emacs.app icon on macOS, but it makes nix build
     # emacs from scratch which takes forever.
-    # package = pkgs.emacs.overrideAttrs (oldAttrs: {
-    #   postInstall = (oldAttrs.postInstall or "") + ''
-    #     # Replace the default Emacs icon with custom icon on macOS
-    #     if [ -d "$out/Applications/Emacs.app/Contents/Resources" ]; then
-    #       cp ${customEmacsIcon} "$out/Applications/Emacs.app/Contents/Resources/Emacs.icns"
-    #     fi
-    #   '';
-    # });
+    package = pkgs.emacs30.overrideAttrs (oldAttrs: {
+      postInstall = (oldAttrs.postInstall or "") + ''
+        if [ -d "$out/Applications/Emacs.app/Contents/Resources" ]; then
+          cp ${customEmacsIcon} "$out/Applications/Emacs.app/Contents/Resources/Emacs.icns"
+        fi
+      '';
+    });
   };
 
   home.file = {
