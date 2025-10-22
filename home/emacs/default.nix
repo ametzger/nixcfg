@@ -15,6 +15,21 @@ in
     # TODO(asm,2025-10-17): This will override the emacs.app icon on macOS, but it makes nix build
     # emacs from scratch which takes forever.
     package = pkgs.emacs30.overrideAttrs (oldAttrs: {
+      # Patches to make this equivalent to emacs-plus brew package
+      patches =
+        (oldAttrs.patches or [ ])
+        ++ [
+          # Fix OS window role (needed for window managers like yabai)
+          (pkgs.fetchpatch {
+            url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/1a5476d127145c712b0216fc68a87195b11952bc/patches/emacs-28/fix-window-role.patch";
+            hash = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
+          })
+          # Make Emacs aware of OS-level light/dark mode
+          (pkgs.fetchpatch {
+            url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/1a5476d127145c712b0216fc68a87195b11952bc/patches/emacs-30/system-appearance.patch";
+            hash = "sha256-3QLq91AQ6E921/W9nfDjdOUWR8YVsqBAT/W9c1woqAw=";
+          })
+        ];
       postInstall = (oldAttrs.postInstall or "") + ''
         if [ -d "$out/Applications/Emacs.app/Contents/Resources" ]; then
           cp ${customEmacsIcon} "$out/Applications/Emacs.app/Contents/Resources/Emacs.icns"
