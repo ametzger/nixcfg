@@ -872,19 +872,19 @@ in
         '';
       };
 
-      prescient = {
-        enable = true;
-        after = [ "ivy" ];
-        config = ''
-          (ivy-prescient-mode)
-        '';
-      };
+      # prescient = {
+      #   enable = true;
+      #   after = [ "ivy" ];
+      #   config = ''
+      #     (ivy-prescient-mode)
+      #   '';
+      # };
 
-      ivy-prescient = {
-        enable = true;
-        after = [ "prescient" "ivy" ];
-        config = "(ivy-prescient-mode)";
-      };
+      # ivy-prescient = {
+      #   enable = true;
+      #   after = [ "prescient" "ivy" ];
+      #   config = "(ivy-prescient-mode)";
+      # };
 
       ivy = {
         enable = true;
