@@ -3,27 +3,30 @@
     enable = true;
     package = pkgs.git;
 
-    userName = "Alex Metzger";
-    userEmail = "asm@asm.io";
     signing = { key = "974B7213E1816927"; }; # pragma: allowlist secret
 
-    aliases = {
-      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      d = "diff --ignore-space-at-eol -b -w";
-      ds = "diff --staged --ignore-space-at-eol -b -w";
-      unstage = "reset HEAD --";
-      s = "status -sb";
-      alias = "!git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort";
-      aliases = "!git alias";
-      assume = "update-index --assume-unchanged";
-      unassume = "update-index --no-assume-unchanged";
-      assumed = "!git ls-files -v | grep ^h | cut -c 3-";
-      up = "pull --ff-only --all -p";
-      mine = "!git lg --author=\"Alex Metzger\"";
-      rmu = "!git status -s|grep '??'|sed -e 's/?? //'|xargs rm";
-    };
+    settings = {
+      user = {
+        name = "Alex Metzger";
+        email = "asm@asm.io";
+      };
 
-    extraConfig = {
+      alias = {
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        d = "diff --ignore-space-at-eol -b -w";
+        ds = "diff --staged --ignore-space-at-eol -b -w";
+        unstage = "reset HEAD --";
+        s = "status -sb";
+        alias = "!git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort";
+        aliases = "!git alias";
+        assume = "update-index --assume-unchanged";
+        unassume = "update-index --no-assume-unchanged";
+        assumed = "!git ls-files -v | grep ^h | cut -c 3-";
+        up = "pull --ff-only --all -p";
+        mine = "!git lg --author=\"Alex Metzger\"";
+        rmu = "!git status -s|grep '??'|sed -e 's/?? //'|xargs rm";
+      };
+
       core = {
         editor = "emacsclient -t -a=\\\"\\\"";
         whitespace = "trailing-space,space-before-tab,-indent-with-non-tab";
@@ -32,8 +35,10 @@
         attributesfile = "~/.gitattributes";
         pager = "${pkgs.delta}/bin/delta";
       };
+
       github = { user = "ametzger"; };
       gitlab = { user = "ametzger"; };
+
       credential = { helper = "osxkeychain"; };
       push = { default = "simple"; };
       color = { ui = "auto"; };
