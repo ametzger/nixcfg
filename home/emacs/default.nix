@@ -1255,6 +1255,21 @@ in
                 ein:worksheet-enable-undo 'full
                 ein:notebook-modes '(ein:notebook-python-mode ein:notebook-plain-mode)
                 ein:urls '("http://localhost:8888"))
+
+          ;; fix smartparens not wanting to write closing parentheses when highlighting a region
+          (progn
+            (defun insert-open-parens-or-wrap (&optional arg)
+              (interactive "P")
+              (if (region-active-p)
+                  (insert-parentheses arg)
+                (insert "()")
+                (backward-char))
+              )
+
+            (defun setup-key-hack ()
+              (define-key ein:notebook-mode-map (kbd "(") #'insert-open-parens-or-wrap))
+
+            (add-hook 'ein:notebooklist-mode-hook #'setup-key-hack))
         '';
         config = ''
           ;; HACK(asm,2025-10-17): For some reason `use-package` doesn't seem to eagerly autoload
