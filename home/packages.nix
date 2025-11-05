@@ -67,7 +67,6 @@ in
     qmk
     rabbitmq-server
     reattach-to-user-namespace
-    rectangle
     redis
     ripgrep
     ruby
@@ -89,52 +88,72 @@ in
     zsh
   ] ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
     displayplacer
+    rectangle
     pkgs.tart
   ]);
 
-  # home-manager derived configurations
-  programs.bash = {
-    enable = true;
-  };
-
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Nord";
+  programs = {
+    bash = {
+      enable = true;
     };
-  };
 
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.fzf = {
-    enable = true;
-    defaultCommand = "rg --files --hidden --no-heading --height 40%";
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.go = {
-    enable = true;
-    env = {
-      GOPATH = "proj/go";
-      GOBIN = "proj/go/bin";
+    bat = {
+      enable = true;
+      config = {
+        theme = "Nord";
+      };
     };
-  };
 
-  programs.kakoune.enable = true;
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  programs.zellij.enable = true;
+    fzf = {
+      enable = true;
+      defaultCommand = "rg --files --hidden --no-heading --height 40%";
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
 
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
+    go = {
+      enable = true;
+      env = {
+        GOPATH = "proj/go";
+        GOBIN = "proj/go/bin";
+      };
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "Alex Metzger";
+          email = "asm@asm.io";
+        };
+
+        "default-command" = "log";
+      };
+    };
+
+    kakoune.enable = true;
+
+    television.enable = true;
+
+    topgrade.enable = true;
+
+    yazi.enable = true;
+
+    zellij.enable = true;
+
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+    };
   };
 }
