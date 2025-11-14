@@ -152,6 +152,4 @@
       setw -g mode-style "fg=''${thm_pink} bg=''${thm_black4} bold"
     '';
   };
-
-  home.file.".tmuxinator.yml".source = ./etc/tmuxinator.yml;
 }

@@ -9,4 +9,6 @@
     rabbitmq-server
     ssm-session-manager-plugin
   ];
+
+  home.file.".tmuxinator.yml".source = ./tmuxinator.yml;
 }
