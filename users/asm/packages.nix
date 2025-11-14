@@ -7,9 +7,10 @@ let
 in
 {
   imports = [
-    ./emacs
     ./docker.nix
+    ./emacs
     ./fish.nix
+    ./fonts.nix
     ./git.nix
     ./nvim.nix
     ./ssh.nix
@@ -20,7 +21,6 @@ in
   home.packages = with pkgs; [
     awscli2
     black
-    cascadia-code
     claude-code
     coreutils
     curl
@@ -32,7 +32,6 @@ in
     elixir
     elixir-ls
     eza
-    fantasque-sans-mono
     fd
     figlet
     functiontrace-server
@@ -40,11 +39,6 @@ in
     gnused
     httpie
     hyperfine
-    ibm-plex
-    infracost
-    input-fonts
-    iterm2
-    jetbrains-mono
     jq
     just
     mise
@@ -86,7 +80,9 @@ in
     xmlsec
     zlib
     zsh
-  ] ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
+  ] ++ (lib.optionals (pkgs.stdenv.isDarwin) [
+    iterm2
+  ]) ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
     displayplacer
     rectangle
     pkgs.tart
