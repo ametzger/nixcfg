@@ -51,8 +51,7 @@
         }
       );
 
-      homeManagerConfigs = forAllSystems (
-        system:
+      mkHomeConfiguration = hostname: system:
         let
           nurPkgs = import nur {
             nurpkgs = pkgs."${system}";
@@ -62,24 +61,24 @@
         {
           pkgs = pkgs."${system}";
           modules = [
-            ./home
+            ./hosts/${hostname}
 
             # needed for comma to work
             nix-index-database.homeModules.nix-index
             { programs.nix-index-database.comma.enable = true; }
-
           ];
           extraSpecialArgs = {
             nur = nurPkgs;
           };
-        }
-      );
+        };
     in
     {
       formatter = forAllSystems (system: pkgs."${system}".nixpkgs-fmt);
 
-      homeConfigurations."asm-mbp-14" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
-      homeConfigurations."asm-mba-13" = home-manager.lib.homeManagerConfiguration homeManagerConfigs."aarch64-darwin";
+      homeConfigurations = {
+        "asm-mbp-14" = home-manager.lib.homeManagerConfiguration (mkHomeConfiguration "asm-mbp-14" "aarch64-darwin");
+        "asm-mba-13" = home-manager.lib.homeManagerConfiguration (mkHomeConfiguration "asm-mba-13" "aarch64-darwin");
+      };
 
       packages = pkgs;
 
@@ -91,21 +90,11 @@
         {
           default = pkgsForSystem.mkShell {
             packages = with pkgsForSystem; [
-              nixpkgs-fmt
-              nil
+              git
               just
+              nil
+              nixpkgs-fmt
             ];
-
-            shellHook = ''
-              echo "Nix configuration development shell"
-              echo "Available commands:"
-              echo "  just build    - Build the configuration"
-              echo "  just switch   - Build and activate"
-              echo "  just fmt      - Format Nix files"
-              echo "  just debug    - Build with debug output"
-              echo ""
-              echo "Current hostname: $(scutil --get LocalHostName 2>/dev/null || hostname)"
-            '';
           };
         }
       );
