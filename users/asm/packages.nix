@@ -50,7 +50,6 @@ in
     openblas
     openssl
     pgbouncer
-    # postgresql
     pyright
     (python311.withPackages (ps: with ps; [
       ipython
@@ -58,8 +57,6 @@ in
       pipx
       # ruff-lsp
     ]))
-    qmk
-    rabbitmq-server
     reattach-to-user-namespace
     redis
     ripgrep
@@ -68,7 +65,6 @@ in
     shellcheck
     socat
     sops
-    ssm-session-manager-plugin
     terraform-ls
     terraform-lsp
     tflint
