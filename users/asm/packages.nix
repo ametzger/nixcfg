@@ -25,8 +25,7 @@ in
     coreutils
     curl
     delta
-    detect-secrets
-    dogdns
+    # detect-secrets
     drill
     duckdb
     elixir
@@ -51,7 +50,7 @@ in
     openssl
     pgbouncer
     pyright
-    (python311.withPackages (ps: with ps; [
+    (python314.withPackages (ps: with ps; [
       ipython
       mypy
       pipx
@@ -136,8 +135,6 @@ in
     television.enable = true;
 
     topgrade.enable = true;
-
-    yazi.enable = true;
 
     zellij.enable = true;
 

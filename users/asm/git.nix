@@ -1,9 +1,16 @@
 { pkgs, ... }: {
+  home.packages = [
+    pkgs.git-filter-repo
+  ];
+
   programs.git = {
     enable = true;
     package = pkgs.git;
 
-    signing = { key = "974B7213E1816927"; }; # pragma: allowlist secret
+    signing = {
+      format = "openpgp";
+      key = "974B7213E1816927"; # pragma: allowlist secret
+    };
 
     settings = {
       user = {
@@ -28,7 +35,7 @@
       };
 
       core = {
-        editor = "emacsclient -t -a=\\\"\\\"";
+        editor = "nvim";
         whitespace = "trailing-space,space-before-tab,-indent-with-non-tab";
         filemode = "false";
         excludesfile = "~/.gitignore_global";

@@ -49,7 +49,7 @@
       vim-tmux-navigator
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
 
       vim.g.mapleader = ' '
 
@@ -179,19 +179,12 @@
       neogit.setup {}
       vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>Neogit<cr>", { noremap = true})
 
-      -- treesitter
-
-      require('nvim-treesitter.configs').setup {
-        highlight = {
-          enable = true,              -- false will disable the whole extension
-          -- disable = { "c", "rust" },  -- list of language that will be disabled
-          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-          -- Using this option may slow down your editor, and you may see some duplicate highlights.
-          -- Instead of true it can also be a list of languages
-          additional_vim_regex_highlighting = false,
-        },
-      }
+      -- treesitter: enable highlighting for all filetypes with a parser
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
 
       -- vim-terraform
       vim.cmd([[let g:terraform_fmt_on_save=1]])
