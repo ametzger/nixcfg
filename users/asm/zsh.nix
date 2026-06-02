@@ -7,35 +7,10 @@
     defaultKeymap = "emacs";
 
     envExtra = ''
-      # pyenv
-      if [[ -d ~/.pyenv ]]; then
-        export PYENV_ROOT="$HOME/.pyenv"
-        export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-      fi
-
-      # rbenv
-      if [[ -d ~/.rbenv ]]; then
-        export RBENV_ROOT="$HOME/.rbenv"
-        export PATH="$RBENV_ROOT/bin:$PATH"
-      fi
-
-      # nvm
-      if [[ -d ~/.nvm ]]; then
-        export NVM_DIR="$HOME/.nvm"
-      fi
-
       # golang
       if [[ -d ~/proj/go ]]; then
         export GOPATH="$HOME/proj/go"
         export PATH="$GOPATH/bin:$PATH"
-      fi
-
-      if [[ -d ~/.tfenv ]]; then
-        export PATH="$HOME/.tfenv/bin:$PATH"
-      fi
-
-      if [[ -d ~/.node-versions ]]; then
-        export NODE_VERSIONS="$HOME/.node-versions"
       fi
 
       # workaround for https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296/5
