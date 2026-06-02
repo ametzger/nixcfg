@@ -1,0 +1,2 @@
+# This fights with mise and nix, so disable
+check_update = false

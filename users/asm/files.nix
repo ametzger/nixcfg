@@ -26,5 +26,6 @@
   home.file.".ripgreprc".source = ./etc/ripgreprc;
   home.file.".spacemacs".source = ./etc/spacemacs;
   home.file.".config/mise/config.toml".source = ./etc/mise-config.toml;
+  home.file."Library/Application\ Support/pdm/config.toml".source = ./etc/pdm.toml;
   home.file."Library/Application Support/qmk/qmk.ini".source = ./etc/qmk.ini;
 }
