@@ -21,7 +21,7 @@ in
   home.packages = with pkgs; [
     awscli2
     black
-    claude-code
+    # claude-code
     coreutils
     curl
     delta
