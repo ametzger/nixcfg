@@ -10,26 +10,24 @@
 
     includes = [ "~/.ssh/config.private" ];
 
-    matchBlocks = {
+    settings = {
       "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "yes";
+        ForwardAgent = false;
+        AddKeysToAgent = "yes";
       };
 
       "i-*" = {
-        proxyCommand = ''
+        ProxyCommand = ''
           sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
         '';
       };
 
       "util" = {
-        user = "ec2-user";
-        identityFile = "~/.ssh/id_ed25519";
-        checkHostIP = false;
-        extraOptions = {
-          StrictHostKeyChecking = "no";
-          UserKnownHostsFile = "/dev/null";
-        };
+        User = "ec2-user";
+        IdentityFile = "~/.ssh/id_ed25519";
+        CheckHostIP = false;
+        StrictHostKeyChecking = "no";
+        UserKnownHostsFile = "/dev/null";
         proxyCommand = "~/bin/util-ssh";
       };
     };
