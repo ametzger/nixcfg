@@ -60,7 +60,7 @@ Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `
 
 - **`hosts/<hostname>/`**: Per-machine entry points
   - `default.nix`: Imports the shared user (`../../users/asm`) and adds host-specific packages and files
-  - e.g. `hosts/asm-mbp-14/` also defines Claude Code config (`claude.nix`) and a tmuxinator layout
+  - e.g. `hosts/asm-mbp-14/` enables the host-specific Jellyfish Claude plugin marketplace and a tmuxinator layout
 
 - **`users/asm/`**: Shared home-manager modules for the `asm` user
   - `default.nix`: Entry point, imports core modules (files, environment, nix, packages)
@@ -91,7 +91,7 @@ Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `
 - Manual pages are disabled for performance (`manual.manpages.enable = false`)
 - Editor is `nvim` (see `EDITOR` and `VISUAL` in `environment.nix`)
 - Shell is `zsh` (though bash and fish configs also exist)
-- Claude Code is configured declaratively but **not** installed via Nix (native auto-updating install); see `hosts/asm-mbp-14/claude.nix`
+- Claude Code is configured declaratively but **not** installed via Nix (native auto-updating install). The `modules/claude.nix` module provides a shared baseline (`local.claude.enable`) and per-host overrides via `local.claude.extraSettings`; the global `~/.claude/CLAUDE.md` lives at `modules/claude-global.md`
 
 ## Adding a New Machine
 

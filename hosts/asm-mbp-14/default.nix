@@ -2,8 +2,14 @@
 {
   imports = [
     ../../users/asm
-    ./claude.nix
   ];
+
+  local.claude.extraSettings.extraKnownMarketplaces.jellyfish-marketplace = {
+    source = {
+      source = "git";
+      url = "git@github.com:Jellyfish-AI/jf-claude-plugins.git";
+    };
+  };
 
   home.packages = with pkgs; [
     infracost
