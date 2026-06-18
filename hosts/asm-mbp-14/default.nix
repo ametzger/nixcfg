@@ -2,6 +2,7 @@
 {
   imports = [
     ../../users/asm
+    ./claude.nix
   ];
 
   home.packages = with pkgs; [
