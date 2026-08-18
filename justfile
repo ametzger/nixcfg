@@ -33,8 +33,16 @@ debug:
 history:
     home-manager generations
 
-# update flake.lock
+# update nixpkgs (and its followers) without bumping the pinned Emacs
 update:
+    nix flake update nixpkgs home-manager nix-index-database nur
+
+# bump the separately-pinned Emacs nixpkgs (triggers a from-source Emacs rebuild)
+update-emacs:
+    nix flake update emacs-nixpkgs
+
+# update every flake input, including the pinned Emacs
+update-all:
     nix flake update
 
 # clean up nix store

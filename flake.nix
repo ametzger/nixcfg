@@ -7,6 +7,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # Pinned to avoid emacs rebuild cost - `just update-emacs` to bump
+    emacs-nixpkgs.url = "github:NixOS/nixpkgs/3e41b24abd260e8f71dbe2f5737d24122f972158";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +29,7 @@
 
   outputs =
     { nixpkgs
+    , emacs-nixpkgs
     , home-manager
     , nix-index-database
       # , claude-code
@@ -51,6 +54,15 @@
         }
       );
 
+      # pinned nixpkgs to avoid emacs rebuild on `just update`
+      emacsPkgs = forAllSystems (
+        system:
+        import emacs-nixpkgs {
+          inherit system;
+          config = nixpkgsConfig;
+        }
+      );
+
       mkHomeConfiguration = hostname: system:
         let
           nurPkgs = import nur {
@@ -69,6 +81,7 @@
           ];
           extraSpecialArgs = {
             nur = nurPkgs;
+            emacsPkgs = emacsPkgs."${system}";
           };
         };
     in
@@ -79,8 +92,6 @@
         "asm-mbp-14" = home-manager.lib.homeManagerConfiguration (mkHomeConfiguration "asm-mbp-14" "aarch64-darwin");
         "asm-mba-13" = home-manager.lib.homeManagerConfiguration (mkHomeConfiguration "asm-mba-13" "aarch64-darwin");
       };
-
-      packages = pkgs;
 
       devShells = forAllSystems (
         system:
