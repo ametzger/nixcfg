@@ -140,6 +140,9 @@
       vim.cmd[[autocmd FileType python setlocal shiftwidth=4 tabstop=4]]
       vim.cmd[[autocmd FileType html setlocal shiftwidth=4 tabstop=4]]
 
+      -- soft-wrap prose
+      vim.cmd[[autocmd FileType markdown setlocal wrap linebreak breakindent]]
+
       -- swap between vertical/horizontal splits
       -- C-w - : vertical to horizontal ( | -> -- )
       vim.api.nvim_set_keymap("i", "<C-w>-", "<Esc><C-w>t<C-w>K", { noremap = true })
