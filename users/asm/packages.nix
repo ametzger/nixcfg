@@ -28,7 +28,7 @@ in
     # detect-secrets
     drill
     duckdb
-    elixir
+    beamPackages.elixir
     elixir-ls
     eza
     fd
@@ -75,9 +75,9 @@ in
     xmlsec
     zlib
     zsh
-  ] ++ (lib.optionals (pkgs.stdenv.isDarwin) [
+  ] ++ (lib.optionals (pkgs.stdenv.hostPlatform.isDarwin) [
     iterm2
-  ]) ++ (lib.optionals (pkgs.stdenv.isDarwin && pkgs.stdenv.isAarch64) [
+  ]) ++ (lib.optionals (pkgs.stdenv.hostPlatform.isDarwin && pkgs.stdenv.hostPlatform.isAarch64) [
     displayplacer
     rectangle
     pkgs.tart

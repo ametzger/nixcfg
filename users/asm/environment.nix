@@ -20,7 +20,7 @@ in
       "/bin"
       "/sbin"
     ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       "/run/current-system/sw/bin"
       "/opt/homebrew/bin"
     ];
