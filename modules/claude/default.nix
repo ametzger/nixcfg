@@ -7,6 +7,7 @@ let
       "pyright-lsp@claude-plugins-official" = true;
     };
     skipDangerousModePermissionPrompt = true;
+    tui = "fullscreen";
   };
 
   settings = lib.recursiveUpdate baseSettings cfg.extraSettings;
@@ -31,6 +32,8 @@ in
 
   config = lib.mkIf cfg.enable {
     home.file.".claude/settings.json".source = settingsFile;
+    # tmux downgrades Claude Code to 256 colors unless told the outer terminal is true color
+    home.sessionVariables.CLAUDE_CODE_TMUX_TRUECOLOR = "1";
     home.file.".claude/CLAUDE.md".source = cfg.globalInstructions;
   };
 }
