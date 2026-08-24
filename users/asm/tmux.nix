@@ -7,6 +7,10 @@
     prefix = "C-b";
     keyMode = "emacs";
     baseIndex = 1;
+    terminal = "tmux-256color";
+    focusEvents = true;
+    historyLimit = 50000;
+    mouse = true;
 
     shell = "${pkgs.zsh}/bin/zsh";
 
@@ -43,9 +47,9 @@
       set-option -g automatic-rename-format '#(basename "#{pane_current_path}")'
       # set-option -g set-titles on
 
-      setw -g mouse on
-      bind -n WheelUpPane   select-pane -t= \; copy-mode -e \; send-keys -M
-      bind -n WheelDownPane select-pane -t= \;                 send-keys -M
+      # Don't hijack the wheel from full-screen apps that read mouse events themselves
+      bind -n WheelUpPane   if -Ft= '#{||:#{pane_in_mode},#{mouse_any_flag}}' 'send-keys -M' 'select-pane -t= ; copy-mode -e ; send-keys -M'
+      bind -n WheelDownPane if -Ft= '#{||:#{pane_in_mode},#{mouse_any_flag}}' 'send-keys -M' 'select-pane -t= ; send-keys -M'
 
       # Default split binds make no sense
       bind |  split-window -h -c "#{pane_current_path}"
@@ -80,8 +84,11 @@
       bind-key -T copy-mode M-w send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
       bind-key -T copy-mode C-g send-keys -X cancel
 
-      # True color
-      set-option -ga terminal-overrides ",xterm-256color:Tc"
+      # True color, OSC 52 clipboard, OSC 8 hyperlinks, CSI u keys (shift-enter et al)
+      set -as terminal-features "*:RGB,*:clipboard,*:hyperlinks,*:extkeys"
+      set -s  extended-keys on
+      set -g  set-clipboard on
+      set -g  allow-passthrough on
 
       # catppuccin theme
 
