@@ -93,6 +93,9 @@
         "asm-mba-13" = home-manager.lib.homeManagerConfiguration (mkHomeConfiguration "asm-mba-13" "aarch64-darwin");
       };
 
+      # export this so that `nix run` can use this flake as a registry for stability with HM packages
+      packages = pkgs;
+
       devShells = forAllSystems (
         system:
         let
