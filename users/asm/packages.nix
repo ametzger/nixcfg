@@ -34,6 +34,7 @@ in
     fd
     figlet
     functiontrace-server
+    gh
     gnupg
     gnused
     httpie
