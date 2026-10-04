@@ -15,6 +15,7 @@ copy-on-select = true
 keybind = global:opt+space=toggle_quick_terminal
 quick-terminal-position = top
 quick-terminal-screen = macos-menu-bar
+quick-terminal-size = 50%
 
 auto-update = off
 
