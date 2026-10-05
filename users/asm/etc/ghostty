@@ -11,6 +11,8 @@ title = " "
 
 copy-on-select = true
 
+bell-features = no-attention
+
 # quick terminal
 keybind = global:opt+space=toggle_quick_terminal
 quick-terminal-position = top
