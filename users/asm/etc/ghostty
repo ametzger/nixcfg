@@ -17,7 +17,7 @@ bell-features = no-attention
 keybind = global:opt+space=toggle_quick_terminal
 quick-terminal-position = top
 quick-terminal-screen = macos-menu-bar
-quick-terminal-size = 50%
+quick-terminal-size = 70%
 
 auto-update = off
 
