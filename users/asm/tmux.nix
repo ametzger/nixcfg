@@ -37,6 +37,9 @@
       setw -g monitor-activity off # this is annoying for stuff like runserver
       set -g renumber-windows on
 
+      # tmuxinator can leak GEM_HOME into panes, see https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296/5
+      set-environment -gu GEM_HOME
+
       # Renumber sessions
       set-hook -g session-created "run ~/bin/renumber-sessions.sh"
       set-hook -g session-closed  "run ~/bin/renumber-sessions.sh"

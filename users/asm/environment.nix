@@ -11,6 +11,7 @@ in
     [
       "${config.home.homeDirectory}/.cargo/bin"
       "${config.home.homeDirectory}/.local/bin"
+      "${config.home.homeDirectory}/proj/go/bin"
       "${config.home.homeDirectory}/.nix-profile/bin"
       "/usr/local/bin"
       "/usr/local/sbin"

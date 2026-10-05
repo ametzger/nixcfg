@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   # TODO(asm,2025-01-28): remove this once https://github.com/NixOS/nixpkgs/pull/375601 is merged
   displayplacer = import ./displayplacer.nix {
@@ -108,14 +108,14 @@ in
       defaultCommand = "rg --files --hidden --no-heading --height 40%";
       enableBashIntegration = true;
       enableFishIntegration = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
     };
 
     go = {
       enable = true;
       env = {
-        GOPATH = "proj/go";
-        GOBIN = "proj/go/bin";
+        GOPATH = "${config.home.homeDirectory}/proj/go";
+        GOBIN = "${config.home.homeDirectory}/proj/go/bin";
       };
     };
 
