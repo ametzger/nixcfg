@@ -8,6 +8,7 @@ let
     };
     skipDangerousModePermissionPrompt = true;
     tui = "fullscreen";
+    voiceEnabled = true;
   };
 
   settings = lib.recursiveUpdate baseSettings cfg.extraSettings;
