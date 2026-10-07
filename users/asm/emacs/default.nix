@@ -1116,6 +1116,7 @@ in
                 lsp-terraform-server (expand-file-name "~/.nix-profile/bin/terraform-lsp")
                 lsp-disabled-clients '(tfls semgrep-ls)
                 lsp-nix-nil-server-path (expand-file-name "~/.nix-profile/bin/nil")
+                lsp-elixir-server-command (list (expand-file-name "~/.nix-profile/bin/elixir-ls"))
                 lsp-terraform-ls-prefill-required-fields t)
         '';
         bindLocal.lsp-mode-map = {
@@ -1129,6 +1130,7 @@ in
           "(nix-mode . lsp-deferred)"
           "(python-mode . lsp-deferred)"
           "(rust-mode . lsp-deferred)"
+          "(elixir-mode . lsp-deferred)"
         ];
         config = ''
           (setq lsp-rust-analyzer-cargo-watch-command "clippy"
