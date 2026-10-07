@@ -36,7 +36,9 @@ All commands are managed through `just` (see `justfile`):
 - **Activate configuration**: `just activate` - Activates the current build (`./result/activate`)
 - **Apply changes**: `just switch` (alias: `just home`) - Builds and activates in one step
 - **View history**: `just history` - Shows profile generations
-- **Update dependencies**: `just update` - Updates `flake.lock` (`nix flake update`)
+- **Update dependencies**: `just update` - Updates all flake inputs *except* the pinned Emacs nixpkgs
+- **Update Emacs pin**: `just update-emacs` - Bumps `emacs-nixpkgs` (triggers a from-source Emacs rebuild)
+- **Update everything**: `just update-all` - `nix flake update`
 - **Clean up**: `just gc` - Garbage collects old profiles and store paths (7+ days old)
 - **Format code**: `just fmt` - Formats Nix files using `nix fmt` (nixpkgs-fmt)
 - **Debug build**: `just debug` - Builds with `--show-trace --verbose`
@@ -49,12 +51,12 @@ The hostname is automatically detected using `scutil --get LocalHostName` and mu
 ### Flake Structure
 
 The root `flake.nix` defines:
-- **Inputs**: nixpkgs (unstable), home-manager, nix-index-database, NUR
+- **Inputs**: nixpkgs (unstable), home-manager, nix-index-database, NUR, and `emacs-nixpkgs` (a separately pinned nixpkgs used only to build Emacs, so routine updates don't trigger an Emacs rebuild)
 - **System support**: Only `aarch64-darwin` (Apple Silicon Macs)
 - **Home configurations**: Per-hostname entries (currently `asm-mbp-14` and `asm-mba-13`), each built via the `mkHomeConfiguration` helper
 - **Config options**: `allowUnfree = true` and `input-fonts.acceptLicense = true`
 
-Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `mkHomeConfiguration` helper also wires in `nix-index-database` (for `comma`) and passes NUR packages via `extraSpecialArgs.nur`.
+Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `mkHomeConfiguration` helper also wires in `nix-index-database` (for `comma`) and passes NUR packages and the pinned Emacs package set via `extraSpecialArgs.nur` and `extraSpecialArgs.emacsPkgs`.
 
 ### Configuration Layout
 
@@ -63,17 +65,18 @@ Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `
   - e.g. `hosts/asm-mbp-14/` enables the host-specific Jellyfish Claude plugin marketplace and a tmuxinator layout
 
 - **`users/asm/`**: Shared home-manager modules for the `asm` user
-  - `default.nix`: Entry point, imports core modules (files, environment, nix, packages)
-  - `packages.nix`: Main package list and program configurations (git, nvim, tmux, zsh, etc.)
+  - `default.nix`: Entry point, imports `modules/claude` and core modules (files, environment, nix, packages)
+  - `packages.nix`: Main package list and program configurations; imports the tool modules below
   - `files.nix`: Dotfile mappings from `users/asm/etc/` and `users/asm/scripts/` to the home directory
   - `environment.nix`: `$PATH`, session variables, and shell aliases
   - `git.nix`, `nvim.nix`, `tmux.nix`, `zsh.nix`, `fish.nix`, `ssh.nix`, `fonts.nix`, `docker.nix`, etc.: Specific tool configurations
-  - `emacs/`: Work-in-progress Emacs configuration (currently commented out in imports)
+  - `emacs/`: Emacs configuration (active). Emacs 30 built from `emacsPkgs` with emacs-plus patches; config is declared via NUR's `rycee` `emacs-init` module (`programs.emacs.init.usePackage`), which generates a byte-compiled `hm-init.el`
   - `etc/`: Dotfiles for various tools (alacritty, kitty, ghostty, mise, ipython, etc.)
   - `scripts/`: Custom shell scripts symlinked to `~/bin`
 
-- **`modules/`**: Unused nix-darwin modules (kept for reference)
-  - `darwin.nix`, `homebrew.nix`, `nix-core.nix`, `system.nix`
+- **`modules/`**:
+  - `claude/`: Claude Code settings module (`default.nix`) and the global `CLAUDE.md` (`claude-global.md`)
+  - `darwin.nix`, `homebrew.nix`, `nix-core.nix`, `system.nix`: Unused nix-darwin modules (kept for reference)
 
 ### Key Design Patterns
 
@@ -91,7 +94,8 @@ Each `homeConfigurations.<hostname>` entry points at `./hosts/<hostname>`. The `
 - Manual pages are disabled for performance (`manual.manpages.enable = false`)
 - Editor is `nvim` (see `EDITOR` and `VISUAL` in `environment.nix`)
 - Shell is `zsh` (though bash and fish configs also exist)
-- Claude Code is configured declaratively but **not** installed via Nix (native auto-updating install). The `modules/claude.nix` module provides a shared baseline (`local.claude.enable`) and per-host overrides via `local.claude.extraSettings`; the global `~/.claude/CLAUDE.md` lives at `modules/claude-global.md`
+- Emacs package autoload files are **not** loaded at startup; a `usePackage` entry is only lazily loadable if it declares an entry point (`command`, `mode`, `bind`, `hook`). An entry with none of those (and no `defer`) is `require`d eagerly at startup; `after` wraps the whole block, including its autoloads, until those features load
+- Claude Code is configured declaratively but **not** installed via Nix (native auto-updating install). The `modules/claude/default.nix` module provides a shared baseline (`local.claude.enable`) and per-host overrides via `local.claude.extraSettings`; the global `~/.claude/CLAUDE.md` lives at `modules/claude/claude-global.md`
 
 ## Adding a New Machine
 

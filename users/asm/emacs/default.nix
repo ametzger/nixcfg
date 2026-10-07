@@ -83,7 +83,6 @@ in
 
       ;; Basic Emacs settings
       (setq line-spacing 0
-            gc-cons-threshold 100000000
             large-file-warning-threshold 50000000
             read-process-output-max (* 1024 1024)
             save-interprogram-paste-before-kill t
@@ -98,6 +97,14 @@ in
             show-trailing-whitespace t
             frame-title-format nil
             frame-inhibit-implied-resize t)
+
+      ;; Redisplay performance
+      (setq-default bidi-paragraph-direction 'left-to-right)
+      (setq bidi-inhibit-bpa t
+            fast-but-imprecise-scrolling t
+            redisplay-skip-fontification-on-input t
+            inhibit-compacting-font-caches t
+            process-adaptive-read-buffering nil)
 
       (setq custom-file (locate-user-emacs-file "custom.el"))
       (if (file-exists-p custom-file)
@@ -167,9 +174,6 @@ in
       ;; Disable version control
       (remove-hook 'find-file-hook 'vc-find-file-hook)
       (setq vc-handled-backends ())
-
-      ;; Disable semantic mode
-      (semantic-mode -1)
 
       ;; imenu settings
       (setq imenu-auto-rescan t
@@ -635,12 +639,13 @@ in
 
       ripgrep = {
         enable = true;
+        command = [ "ripgrep-regexp" ];
         extraConfig = ":if (executable-find \"rg\")";
       };
 
       deadgrep = {
         enable = true;
-        after = [ "ripgrep" "projectile" ];
+        command = [ "deadgrep" ];
         config = ''
           (defun asm/deadgrep-project-root ()
             (if (projectile-project-p)
@@ -815,6 +820,7 @@ in
       yasnippet-snippets = {
         enable = true;
         after = [ "yasnippet" ];
+        defer = 1;
       };
 
       crux = {
@@ -1232,6 +1238,7 @@ in
       # versions remove the `pm--visible-buffer-name` function which breaks ein internals.
       polymode = {
         enable = true;
+        defer = true;
         package = epkgs: epkgs.trivialBuild {
           pname = "polymode";
           version = "4b7c240";
@@ -1247,7 +1254,6 @@ in
 
       ein = {
         enable = true;
-        after = [ "polymode" ];
         command = [ "ein:login" ];
         init = ''
           (setq ein:complete-on-dot -1
@@ -1472,6 +1478,7 @@ in
 
       cider = {
         enable = true;
+        command = [ "cider-jack-in" "cider-jack-in-cljs" "cider-jack-in-clj&cljs" "cider-connect" "cider-connect-cljs" ];
       };
 
       vterm = {
@@ -1485,6 +1492,7 @@ in
 
       chatgpt-shell = {
         enable = true;
+        command = [ "chatgpt-shell" "chatgpt-shell-prompt-compose" ];
         config = ''
           (setq chatgpt-shell-openai-key
                 (lambda ()
