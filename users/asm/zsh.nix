@@ -17,9 +17,6 @@
       (lib.mkOrder
         1000
         ''
-          ## awscli completion
-          source '${pkgs.awscli}/share/zsh/site-functions/aws_zsh_completer.sh'
-
           ## prompt
           # VCS integration setup
           autoload -Uz vcs_info
